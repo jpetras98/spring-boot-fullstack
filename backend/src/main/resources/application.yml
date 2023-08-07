@@ -1,0 +1,19 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5332/customer
+    username: janex
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: validate # Validate entity to match our flyway schema!  #none #create-drop #update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show_sql: false
+  main:
+    web-application-type: servlet
