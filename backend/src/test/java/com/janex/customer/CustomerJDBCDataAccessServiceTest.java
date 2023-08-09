@@ -3,6 +3,7 @@ package com.janex.customer;
 import com.janex.AbstractTestcontainers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 // @DataJdbcTest => we can use this annotation if we don't want to configure getJdbcTemplate by ourselves
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD) // To ensure a clean state
 class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
 
     private CustomerJDBCDataAccessService customerJDBCDataAccessService; // Under test
@@ -25,7 +27,6 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 customerRowMapper
         );
     }
-
 
     @Test
     void selectAllCustomers() {
