@@ -1,0 +1,48 @@
+name: CI - Build Backend
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - backend/**
+
+jobs:
+  # Label of the container job
+  build:
+    # Containers must run in Linux based operating systems
+    runs-on: ubuntu-latest
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:15.3
+        # Provide the user, password and name of database for postgres
+        env:
+          POSTGRES_USER: janex
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: customer
+        # Provide ports
+        ports:
+          - 5332:5432
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+      - name: Build and run Unit/Integration Tests with Maven
+        # 'ntp' means do not display transfer progress when downloading or uploading
+        # 'B' means run in non-interactive mode
+        run: mvn -ntp -B verify
