@@ -30,13 +30,13 @@ jobs:
       run:
         working-directory: ./backend
     steps:
-      - name: Send Slack Message
-        run: >
-          curl && curl -X POST -H 'Content-type: application/json'
-          --data '
-            {"text":"Deployment started :progress_bar: :fingerscrossed:"}
-          '
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+#      - name: Send Slack Message
+#        run: >
+#            curl && curl -X POST -H 'Content-type: application/json'
+#            --data '
+#              {"text":"Deployment started :progress_bar: :fingerscrossed:"}
+#            '
+#            ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Checkout entire code into the runner
         uses: actions/checkout@v3
       - name: Set up Java
