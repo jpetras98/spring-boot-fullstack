@@ -185,7 +185,7 @@
                     </from>
                     <!-- where to push the image-->
                     <to>
-                        <image>registry.hub.docker.com/${docker.username}/${docker.image.name}:${docker.image.tag}</image>
+                        <image>registry.hub.docker.com/${docker.username}/${docker.image.name}:${version}</image>
                         <tags>
                             <tag>latest</tag>
                         </tags>
