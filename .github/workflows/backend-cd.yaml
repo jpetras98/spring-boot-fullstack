@@ -30,6 +30,15 @@ jobs:
       run:
         working-directory: ./backend
     steps:
+      - name: Send custom JSON data to Slack workflow
+        id: slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          # This data can be any valid JSON from a previous step in the GitHub Action
+          payload: |
+            {"text":"Deployment started :progress_bar: :fingerscrossed:"}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Send Slack Message
         run: >
             curl -X POST -H 'Content-type: application/json'
