@@ -8,6 +8,7 @@ public class PingPongController {
 
     record PingPong(String result) {}
 
+    // For testing
     @GetMapping("/ping")
     public PingPong getPingPong() {
         return new PingPong("Pong");
