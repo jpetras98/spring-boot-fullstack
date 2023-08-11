@@ -16,15 +16,11 @@
     <name>spring-boot-example</name>
     <description>Spring Boot Example Project</description>
 
-    <organization>
-        <!-- dockerhub username-->
-        <name>jpetras</name>
-<!--        <url>https://janex.com</url>-->
-    </organization>
-
     <properties>
         <java.version>17</java.version>
         <docker.username>jpetras</docker.username>
+        <docker.image.name>jpetras-api</docker.image.name>
+        <docker.image.tag/>
     </properties>
 
     <dependencies>
@@ -189,7 +185,7 @@
                     </from>
                     <!-- where to push the image-->
                     <to>
-                        <image>registry.hub.docker.com/${project.organization.name}/${project.artifactId}:${project.version}</image>
+                        <image>registry.hub.docker.com/${docker.username}/${docker.image.name}:${docker.image.tag}</image>
                         <tags>
                             <tag>latest</tag>
                         </tags>
