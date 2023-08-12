@@ -73,10 +73,10 @@ jobs:
       - name: Update Dockerrun.aws.json api image tag with new build number
         run: |
           echo "Dockerrun.aws.json before updating tag"
-          cat Dockerrun.aws.json
-          sed -i -E 's_(jpetras/jpetras-api:)([^"]*)_\1'${{ steps.build-number.outputs.BUILD_NUMBER }}'_' Dockerrun.aws.json
+          cat ../Dockerrun.aws.json
+          sed -i -E 's_(jpetras/jpetras-api:)([^"]*)_\1'${{ steps.build-number.outputs.BUILD_NUMBER }}'_' ../Dockerrun.aws.json
           echo "Dockerrun.aws.json after updating tag"
-          cat Dockerrun.aws.json
+          cat ../Dockerrun.aws.json
       - name: Send Slack Message
         uses: slackapi/slack-github-action@v1.24.0
         with:
@@ -95,7 +95,7 @@ jobs:
           version_description: ${{ github.SHA }}
           region: ${{ secrets.EB_REGION }}
           # Full path is needed
-          deployment_package: backend/Dockerrun.aws.json
+          deployment_package: Dockerrun.aws.json
       - name: Send Slack Message
         uses: slackapi/slack-github-action@v1.24.0
         with:
