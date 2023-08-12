@@ -8,7 +8,7 @@ spring:
     username: janex
     password: password
     hikari:
-      maximum-pool-size: 200
+      maximum-pool-size: 1000
   jpa:
     hibernate:
       ddl-auto: validate # Validate entity to match our flyway schema!  #none #create-drop #update
