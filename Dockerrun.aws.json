@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "jpetras-api",
-      "image": "jpetras/jpetras-api:latest",
+      "image": "jpetras/jpetras-api:12.08.2023.00.29.09",
       "essential": true,
       "memory": 512,
       "portMappings": [
