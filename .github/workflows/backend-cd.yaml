@@ -124,7 +124,17 @@ jobs:
         if: always()
         uses: slackapi/slack-github-action@v1.24.0
         with:
+          if: ${{ job.status == 'Job status failure' }}
           payload: |
             {"text":"Job status ${{ job.status }} :error_: :terror:"}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Send Slack Message
+        if: always()
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          if: ${{ job.status != 'Job status failure' }}
+          payload: |
+            {"text":"Job status ${{ job.status }} :celebrate_party: :done:"}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
